@@ -8,6 +8,8 @@ namespace OOP_CA_2
 {
     class PartTimeEmployee : Employee
     {
+        // Part Time Employee is payed by the hour so consider an average weekly workhours for a part timer
+        // then multiply that by 4 for the month then multiply by the hourly rate to recive the monthly Pay
         public decimal HourlyRate { get; set; }
         public double HoursWorked { get; set; }
 
@@ -16,7 +18,7 @@ namespace OOP_CA_2
             HourlyRate = hourlyRate;
             HoursWorked = hoursWorked;
         }
-        public decimal CalculateMonthlyPay()
+        public override decimal CalculateMonthlyPay()
         {
             decimal HoursWorkedToDecimal = Convert.ToDecimal(HoursWorked);
             decimal monthlypay = (HourlyRate * HoursWorkedToDecimal);

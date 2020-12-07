@@ -17,7 +17,7 @@ namespace OOP_CA_2
             LastName = lastName;
         }
 
-        public decimal CalculateMonthlyPay()
+        public virtual decimal CalculateMonthlyPay()
         {
             decimal monthlypay = 0;
             return monthlypay;

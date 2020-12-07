@@ -8,6 +8,8 @@ namespace OOP_CA_2
 {
     class FullTimeEmployee : Employee
     {
+        // FullTime Employee is taking a salary
+        // So take a realistic salary over a year and here we will divide by 12 to get a monthly salary
         public decimal Salary { get; set; }
 
         public FullTimeEmployee(string firstName, string lastName, decimal salary) : base(firstName, lastName)
@@ -15,7 +17,7 @@ namespace OOP_CA_2
             Salary = salary;
         }
 
-        public decimal CalculateMonthlyPay()
+        public override decimal CalculateMonthlyPay()
         {
             decimal monthlypay = Salary / 12;
             return monthlypay;

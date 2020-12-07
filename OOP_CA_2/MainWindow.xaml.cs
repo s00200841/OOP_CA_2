@@ -21,9 +21,10 @@ namespace OOP_CA_2
     /// </summary>
     /// S00200841
     /// Andrew Casey
-    /// started 10:00 monday 07/12/2020
-    /// Added as far as two check boxes and had to ask how to sort for individual clicks
-    /// end: 1:00
+    /// started monday 07/12/2020 start: 10:00 end: 1:00 *** start: 2:00 end:
+    /// Added as far as two check boxes and had to ask how to sort for individual clicks need to optimise next before moving on
+    /// On Part 13 Going fairly good sofar
+    /// {Clear() pt 14 is added}, pt 13 need Add Update and Delete 
     public partial class MainWindow : Window
     {
 
@@ -41,11 +42,11 @@ namespace OOP_CA_2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            PartTimeEmployee pTE1 = new PartTimeEmployee("John", "Lennon", 12, 10);
-            PartTimeEmployee pTE2 = new PartTimeEmployee("Abraham", "Johnson", 6, 10);
+            PartTimeEmployee pTE1 = new PartTimeEmployee("John", "Lennon", 10, 32);
+            PartTimeEmployee pTE2 = new PartTimeEmployee("Abraham", "Johnson", 10, 24);
 
-            FullTimeEmployee fTE1 = new FullTimeEmployee("Mike", "Zunt", 120);
-            FullTimeEmployee fTE2 = new FullTimeEmployee("Mikey", "D", 240);
+            FullTimeEmployee fTE1 = new FullTimeEmployee("Mike", "Zunt", 1200);
+            FullTimeEmployee fTE2 = new FullTimeEmployee("Mikey", "D", 2400);
 
             employees.Add(pTE1);
             employees.Add(pTE2);
@@ -67,49 +68,54 @@ namespace OOP_CA_2
 
         private void lbxEmployeeLists_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PartTimeEmployee selectedEmployee = lbxEmployeeLists.SelectedItem as PartTimeEmployee;
+            Employee selectedEmployee = lbxEmployeeLists.SelectedItem as Employee;
 
             if (selectedEmployee != null)
             {
                 // In here this will be used to fill the text boxes on the right with whichever employee we are on 
-                // TODO : start this once i make the Texboxes and it is needed to have the information send into them
+                // TODO : Might need more here, other textboxes etc, might also need an if for the salary since its fulltime only
+                tbxFName.Text = selectedEmployee.FirstName;
+                tbxLName.Text = selectedEmployee.LastName;
+                tblkMonthlyPay.Text = selectedEmployee.CalculateMonthlyPay().ToString();
             }
         }
 
+        // Have check boxes and uncheck boxes
+        // need the check/uncheck but might need to recheck code and refactor at some point
+        // TODO: recheck both methods
         private void cboxBoxes_Checked(object sender, RoutedEventArgs e)
         {
-            int checker = 0;
+            bool check = true;
             filterEmployees.Clear();
             lbxEmployeeLists.ItemsSource = null;
 
-            // if both are checked
-            if(cboxFullTime.IsChecked == true && cboxPartTime.IsChecked == true)
+            if (cboxFullTime.IsChecked == true && cboxPartTime.IsChecked == true) // if both are checked
             {
                 lbxEmployeeLists.ItemsSource = employees;
-            }
+            }          
             else
-            {
-                if (cboxFullTime.IsChecked == true)
+            {              
+                if (cboxFullTime.IsChecked == true )
                 {
-                    checker = 1;
+                    check = true;
+                   
                 }
                 else if (cboxPartTime.IsChecked == true)
                 {
-                    checker = 2;
+                    check = false;
                 }
                 foreach(Employee employee in employees)
-                {
-                    if (checker == 1)
+                { 
+                    if (check)
                     {
-                        // if full time
-                        if(employee as FullTimeEmployee != null)
+                        if (employee as FullTimeEmployee != null)
                         {
                             filterEmployees.Add(employee);
                         }
                     }
-                    if (checker == 2)
+                    if (!check)
                     {
-                       if(employee as PartTimeEmployee != null)
+                        if (employee as PartTimeEmployee != null)
                         {
                             filterEmployees.Add(employee);
                         }
@@ -117,6 +123,60 @@ namespace OOP_CA_2
                 }
                 lbxEmployeeLists.ItemsSource = filterEmployees;
             }
+            
+        }
+
+        private void cboxBoxes_UnChecked(object sender, RoutedEventArgs e)
+        {
+            bool check = true;
+            filterEmployees.Clear();
+            if (cboxFullTime.IsChecked == false && cboxPartTime.IsChecked == false)
+            {
+                lbxEmployeeLists.ItemsSource = null;
+            }
+            else
+            {
+                if (cboxFullTime.IsChecked == true)
+                {
+                    check = true;
+
+                }
+                else if (cboxPartTime.IsChecked == true)
+                {
+                    check = false;
+                }
+                foreach (Employee employee in employees)
+                {
+                    if (check)
+                    {                        
+                        if (employee as FullTimeEmployee != null)
+                        {
+                            filterEmployees.Add(employee);
+                        }
+                    }
+                    if (!check)
+                    {
+                        if (employee as PartTimeEmployee != null)
+                        {
+                            filterEmployees.Add(employee);
+                        }
+                    }
+                }
+                lbxEmployeeLists.ItemsSource = filterEmployees;
+            }
+        }
+
+        // Clear does just that, Clears all Fields and resets the radio buttons
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            tbxFName.Clear();
+            tbxLName.Clear();
+            rbtnFT.IsChecked = false;
+            rbtnPT.IsChecked = false;
+            tbxSalary.Clear();
+            tbxHourlyRate.Clear();
+            tbxHrsWorked.Clear();
+            tblkMonthlyPay.Text = ""; // Not sure about this one, just set it to blank manualy!!!
         }
     }
 }
