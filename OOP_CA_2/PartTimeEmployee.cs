@@ -21,7 +21,7 @@ namespace OOP_CA_2
         public override decimal CalculateMonthlyPay()
         {
             decimal HoursWorkedToDecimal = Convert.ToDecimal(HoursWorked);
-            decimal monthlypay = (HourlyRate * HoursWorkedToDecimal);
+            decimal monthlypay = Math.Round((HourlyRate * HoursWorkedToDecimal),2);
             return monthlypay;
         }
         public override string ToString()

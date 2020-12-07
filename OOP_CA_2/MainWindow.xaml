@@ -26,9 +26,9 @@
         <TextBlock x:Name="tblkMPay" HorizontalAlignment="Left" Margin="373,379,0,0" TextWrapping="Wrap" Text="Monthly Pay" VerticalAlignment="Top"/>
         <TextBlock x:Name="tblkMonthlyPay" HorizontalAlignment="Left" Margin="470,379,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77"/>
         <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Left" Margin="681,77,0,0" VerticalAlignment="Top" Width="75" Click="btnClear_Click"/>
-        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="681,138,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="681,206,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="681,270,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="681,138,0,0" VerticalAlignment="Top" Width="75" Click="btnAdd_Click"/>
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="681,206,0,0" VerticalAlignment="Top" Width="75" Click="btnUpdate_Click"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="681,270,0,0" VerticalAlignment="Top" Width="75" Click="btnDelete_Click"/>
 
     </Grid>
 </Window>

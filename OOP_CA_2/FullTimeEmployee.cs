@@ -19,7 +19,7 @@ namespace OOP_CA_2
 
         public override decimal CalculateMonthlyPay()
         {
-            decimal monthlypay = Salary / 12;
+            decimal monthlypay = Math.Round((Salary / 12),2);
             return monthlypay;
         }
 
