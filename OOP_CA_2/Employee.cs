@@ -10,5 +10,22 @@ namespace OOP_CA_2
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public Employee(string firstName, string lastName)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+        }
+
+        public decimal CalculateMonthlyPay()
+        {
+            decimal monthlypay = 0;
+            return monthlypay;
+        }
+
+        public override string ToString()
+        {
+            return string.Format($"{LastName},{FirstName}").ToString();
+        }
     }
 }

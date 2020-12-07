@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP_CA_2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        
+        <ListBox x:Name="lbxEmployeeLists" HorizontalAlignment="Left" Height="299" Margin="46,100,0,0" VerticalAlignment="Top" Width="231" SelectionChanged="lbxEmployeeLists_SelectionChanged"/>
+        <TextBlock x:Name="tblkEmployees" HorizontalAlignment="Left" Margin="46,79,0,0" TextWrapping="Wrap" Text="EMPLOYEES" VerticalAlignment="Top" Width="149"/>
+        <CheckBox x:Name="cboxFullTime" Content="Full Time" HorizontalAlignment="Left" Margin="46,46,0,0" VerticalAlignment="Top" Checked="cboxBoxes_Checked"/>
+        <CheckBox x:Name="cboxPartTime" Content="Part Time" HorizontalAlignment="Left" Margin="161,46,0,0" VerticalAlignment="Top" Checked="cboxBoxes_Checked"/>
+
     </Grid>
 </Window>
