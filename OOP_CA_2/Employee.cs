@@ -8,6 +8,7 @@ namespace OOP_CA_2
 {
     abstract class Employee
     {
+        // Employee is the parent class and holds Simple stuff like First and Last Name
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
@@ -25,7 +26,7 @@ namespace OOP_CA_2
 
         public override string ToString()
         {
-            return string.Format($"{LastName},{FirstName}").ToString();
+            return string.Format($"{LastName} , {FirstName}").ToString();
         }
     }
 }

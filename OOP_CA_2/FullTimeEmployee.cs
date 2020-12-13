@@ -25,7 +25,7 @@ namespace OOP_CA_2
 
         public override string ToString()
         {
-            return string.Format($"{LastName},{FirstName} - Full Time").ToString();
+            return string.Format($"{LastName}, {FirstName} - Full Time").ToString();
         }
 
     }

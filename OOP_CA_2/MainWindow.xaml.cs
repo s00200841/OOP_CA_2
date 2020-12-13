@@ -30,6 +30,8 @@ namespace OOP_CA_2
     /// Have a Lot of work piling up and have the free time today so i real went through quite a bit
     /// Im Preaty much done on day one but i will leave the sending till i give it a day or two and review my code of any further updating / fixing
     /// Sure Ill find something i could add or that i have missed
+    /// started sunday 13.12.2020 start: 4:00 end:
+    /// looked over code. Forgot to add order and capital letters for last name, should work fine now
     public partial class MainWindow : Window
     {
         ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
@@ -42,21 +44,23 @@ namespace OOP_CA_2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            PartTimeEmployee pTE1 = new PartTimeEmployee("John", "Lennon", 10, 32);
-            PartTimeEmployee pTE2 = new PartTimeEmployee("Abraham", "Johnson", 10, 24);
+            PartTimeEmployee pTE1 = new PartTimeEmployee("Johnny", "KALLISTER", 11, 96);
+            PartTimeEmployee pTE2 = new PartTimeEmployee("Abraham", "JOHNSTON", 12, 112);
 
-            FullTimeEmployee fTE1 = new FullTimeEmployee("Mike", "Zunt", 1200);
-            FullTimeEmployee fTE2 = new FullTimeEmployee("Mikey", "D", 2400);
+            FullTimeEmployee fTE1 = new FullTimeEmployee("Mike", "MANN", 32000);
+            FullTimeEmployee fTE2 = new FullTimeEmployee("Mikey", "DEAN", 24000);
 
             employees.Add(pTE1);
             employees.Add(pTE2);
             employees.Add(fTE1);
             employees.Add(fTE2);
 
-            lbxEmployeeLists.ItemsSource = employees;
+            lbxEmployeeLists.ItemsSource = employees.OrderBy(c => c.LastName);
+            //lbxEmployeeLists.ItemsSource = employees;
 
         }
 
+        // all premade Employees will be show on the screen as program starts
         private void lbxEmployeeLists_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Employee selectedEmployee = lbxEmployeeLists.SelectedItem as Employee;
@@ -64,7 +68,6 @@ namespace OOP_CA_2
             if (selectedEmployee != null)
             {
                 // In here this will be used to fill the text boxes on the right with whichever employee we have selected
-                // also update and delete will rely on this
                 tbxFName.Text = selectedEmployee.FirstName;
                 tbxLName.Text = selectedEmployee.LastName;
                 foreach(Employee employee in employees)
@@ -101,7 +104,7 @@ namespace OOP_CA_2
 
             if (cboxFullTime.IsChecked == true && cboxPartTime.IsChecked == true) // if both are checked
             {
-                lbxEmployeeLists.ItemsSource = employees;
+                lbxEmployeeLists.ItemsSource = employees.OrderBy(c => c.LastName); 
             }          
             else
             {              
@@ -131,7 +134,7 @@ namespace OOP_CA_2
                         }
                     }
                 }
-                lbxEmployeeLists.ItemsSource = filterEmployees;
+                lbxEmployeeLists.ItemsSource = filterEmployees.OrderBy(c => c.LastName);
             }
             
         }
@@ -172,7 +175,7 @@ namespace OOP_CA_2
                         }
                     }
                 }
-                lbxEmployeeLists.ItemsSource = filterEmployees;
+                lbxEmployeeLists.ItemsSource = filterEmployees.OrderBy(c => c.LastName);
             }
         }
 
@@ -195,7 +198,7 @@ namespace OOP_CA_2
         {
             // first and last name will be used by both
             string firstName = tbxFName.Text;
-            string lastName = tbxLName.Text;
+            string lastName = tbxLName.Text.ToUpper();
             // FullTime has a salary
             if(rbtnFT.IsChecked == true)
             {              
@@ -207,6 +210,9 @@ namespace OOP_CA_2
                     {
                         FullTimeEmployee employee = new FullTimeEmployee(firstName, lastName, salary);
                         employees.Add(employee);
+                        cboxFullTime.IsChecked = true;
+                        cboxPartTime.IsChecked = false;
+                        lbxEmployeeLists.ItemsSource = filterEmployees.OrderBy(c => c.LastName.ToUpper());
                     }                                                          
             }
             // PartTime has a HoursWorked and HourlyRate
@@ -223,8 +229,11 @@ namespace OOP_CA_2
                 {
                     PartTimeEmployee employee = new PartTimeEmployee(firstName, lastName, hourlyRate, hoursWorked);
                     employees.Add(employee);
+                    cboxFullTime.IsChecked = false;
+                    cboxPartTime.IsChecked = true;
+                    lbxEmployeeLists.ItemsSource = filterEmployees.OrderBy(c => c.LastName.ToUpper());
                 }
-            }           
+            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -236,7 +245,7 @@ namespace OOP_CA_2
             {
                 // first and last name will be used by both
                 string firstName = tbxFName.Text;
-                string lastName = tbxLName.Text;
+                string lastName = tbxLName.Text.ToUpper();
                 // FullTime has a salary
                 if (rbtnFT.IsChecked == true)
                 {
@@ -249,7 +258,11 @@ namespace OOP_CA_2
                         FullTimeEmployee employee = new FullTimeEmployee(firstName, lastName, salary);
                         employees.Add(employee);
                         employees.Remove(selectedEmployee);
-                        // Remove will get rid of the selected Employee as i cuold no find a replace i went with this option
+                        cboxFullTime.IsChecked = true;
+                        cboxPartTime.IsChecked = false;
+                        lbxEmployeeLists.ItemsSource = filterEmployees.OrderBy(c => c.LastName.ToUpper());
+                        // Remove will get rid of the selected Employee
+                        // and add the Newly created Employee
                     }
                 }
                 // PartTime has a HoursWorked and HourlyRate
@@ -267,12 +280,17 @@ namespace OOP_CA_2
                         PartTimeEmployee employee = new PartTimeEmployee(firstName, lastName, hourlyRate, hoursWorked);
                         employees.Add(employee);
                         employees.Remove(selectedEmployee);
-                        // Remove will get rid of the selected Employee as i cuold no find a replace i went with this option
+                        cboxFullTime.IsChecked = false;
+                        cboxPartTime.IsChecked = true;
+                        lbxEmployeeLists.ItemsSource = filterEmployees.OrderBy(c => c.LastName.ToUpper());
+                        // Remove will get rid of the selected Employee
+                        // and add the Newly created Employee
                     }
-                }
-            }       
+                }               
+            }
         }
 
+        // delete will delete the employee that is currently selected
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             Employee selectedEmployee = lbxEmployeeLists.SelectedItem as Employee;
