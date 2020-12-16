@@ -14,13 +14,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+// https://github.com/s00200841/OOP_CA_2 ********************
+// Link to GitHub 
 namespace OOP_CA_2
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    /// S00200841
-    /// Andrew Casey
+    /// Student Number : S00200841
+    /// Student Name : Andrew Casey
     /// started monday 07/12/2020 start: 10:00 end: 1:00 *** start: 2:00 end: 3:30 *** start: 5:15 end: 8:30
     /// Added as far as two check boxes and had to ask how to sort for individual clicks need to optimise next before moving on
     /// On Part 13 Going fairly good sofar
@@ -53,6 +55,8 @@ namespace OOP_CA_2
             FullTimeEmployee fTE1 = new FullTimeEmployee("Mike", "MANN", 32000);
             FullTimeEmployee fTE2 = new FullTimeEmployee("Mikey", "DEAN", 24000);
 
+            // For testing purpose i add 4 employees
+            // 4 was plenty to test. Allowed me to check all area of code ex. Delete(), Update()
             employees.Add(pTE1);
             employees.Add(pTE2);
             employees.Add(fTE1);
