@@ -18,15 +18,12 @@ namespace OOP_CA_2
             LastName = lastName;
         }
 
-        public virtual decimal CalculateMonthlyPay()
-        {
-            decimal monthlypay = 0;
-            return monthlypay;
-        }
+        public abstract decimal CalculateMonthlyPay();
+
 
         public override string ToString()
         {
-            return string.Format($"{LastName} , {FirstName}").ToString();
+            return string.Format($"{LastName.ToUpper()} , {FirstName}").ToString();
         }
     }
 }
